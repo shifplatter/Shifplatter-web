@@ -1,154 +1,159 @@
-// Next.js Ready Admin Portal UI
-// Place inside: app/page.tsx
-// Deploy on Vercel for a live shareable URL
+import { useState } from 'react'
+import { Plus, Star, Upload } from 'lucide-react'
 
-export default function FoodAdminPortal() {
+export default function RestaurantFoodUploadUI() {
+  const [foods, setFoods] = useState([
+    {
+      id: 1,
+      restaurant: 'Spice Garden',
+      food: 'Chicken Biryani',
+      image:
+        'https://images.unsplash.com/photo-1701579231305-d84d8af9a3fd?q=80&w=1200&auto=format&fit=crop',
+      rating: 4.8,
+    },
+    {
+      id: 2,
+      restaurant: 'Ocean Grill',
+      food: 'Grilled Fish',
+      image:
+        'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?q=80&w=1200&auto=format&fit=crop',
+      rating: 4.5,
+    },
+  ])
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-yellow-100 flex items-center justify-center p-6">
-      <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8">
-        {/* Left Side */}
-        <div className="flex flex-col justify-center space-y-6">
-          <div>
-            <h1 className="text-5xl font-bold text-gray-900 leading-tight">
-              Restaurant Food
-              <span className="text-orange-500 block">Admin Portal</span>
-            </h1>
-            <p className="text-lg text-gray-600 mt-4 leading-relaxed">
-              A clean and user-friendly dashboard for admins to upload delicious
-              food photos, restaurant information, and menu details.
-            </p>
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-black text-white px-6 py-5 flex items-center justify-between shadow-lg">
+        <div>
+          <h1 className="text-2xl font-bold">Food Gallery Admin</h1>
+          <p className="text-sm text-gray-300">
+            Shareable restaurant food showcase
+          </p>
+        </div>
+
+        <button className="bg-white text-black px-5 py-2 rounded-2xl font-semibold hover:opacity-90">
+          Admin Login
+        </button>
+      </header>
+
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8 p-6">
+        <div className="bg-white rounded-3xl shadow-xl p-6 h-fit sticky top-6">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-black text-white p-3 rounded-2xl">
+              <Plus size={24} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold">Admin Upload Panel</h2>
+              <p className="text-gray-500 text-sm">
+                Only admin can upload food images
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white rounded-3xl shadow-lg p-5 border border-orange-100">
-              <div className="text-3xl mb-3">🍔</div>
-              <h3 className="font-semibold text-gray-800">Easy Uploads</h3>
-              <p className="text-sm text-gray-500 mt-2">
-                Upload food photos instantly with drag & drop support.
-              </p>
+          <div className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Restaurant Name
+              </label>
+              <input
+                type="text"
+                placeholder="Enter restaurant name"
+                className="w-full border border-gray-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+              />
             </div>
 
-            <div className="bg-white rounded-3xl shadow-lg p-5 border border-orange-100">
-              <div className="text-3xl mb-3">🏪</div>
-              <h3 className="font-semibold text-gray-800">Restaurant Details</h3>
-              <p className="text-sm text-gray-500 mt-2">
-                Add restaurant names, food categories, pricing, and more.
-              </p>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Food Name
+              </label>
+              <input
+                type="text"
+                placeholder="Enter food name"
+                className="w-full border border-gray-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black"
+              />
             </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Upload Food Image
+              </label>
+              <div className="border-2 border-dashed border-gray-300 rounded-3xl p-8 text-center bg-gray-50">
+                <Upload className="mx-auto mb-3 text-gray-400" size={32} />
+                <p className="text-gray-500 text-sm mb-3">
+                  Click to upload food image
+                </p>
+                <input type="file" accept="image/*" />
+              </div>
+            </div>
+
+            <button className="w-full bg-green-600 text-white py-4 rounded-2xl font-semibold hover:bg-green-700 transition text-lg">
+              Upload Food Post
+            </button>
           </div>
         </div>
 
-        {/* Right Side */}
-        <div className="bg-white rounded-[32px] shadow-2xl p-8 border border-orange-100">
-          <div className="flex items-center justify-between mb-8">
+        <div className="lg:col-span-2">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Admin Login</h2>
+              <h2 className="text-3xl font-bold text-gray-900">
+                Public Food Gallery
+              </h2>
               <p className="text-gray-500 mt-1">
-                Secure access for restaurant administrators.
+                Share this page link with everyone
               </p>
             </div>
-            <div className="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
-              🔐
-            </div>
-          </div>
 
-          {/* Login Form */}
-          <div className="space-y-5">
-            <div>
-              <label className="text-sm font-medium text-gray-700 block mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                placeholder="admin@example.com"
-                className="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-medium text-gray-700 block mb-2">
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                className="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
-              />
-            </div>
-
-            <button className="w-full bg-orange-500 hover:bg-orange-600 transition-all text-white font-semibold py-3 rounded-2xl shadow-lg">
-              Login to Dashboard
+            <button className="bg-black text-white px-5 py-3 rounded-2xl font-semibold">
+              Share Link
             </button>
           </div>
 
-          {/* Upload Section */}
-          <div className="mt-10 border-t pt-8">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">
-                  Upload Food Details
-                </h3>
-                <p className="text-gray-500 text-sm mt-1">
-                  Add restaurant menu items and photos.
-                </p>
-              </div>
-              <div className="text-3xl">📸</div>
-            </div>
-
-            <div className="space-y-5">
-              <div>
-                <label className="text-sm font-medium text-gray-700 block mb-2">
-                  Restaurant Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter restaurant name"
-                  className="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          <div className="grid md:grid-cols-2 gap-6">
+            {foods.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white rounded-3xl overflow-hidden shadow-xl hover:scale-[1.02] transition"
+              >
+                <img
+                  src={item.image}
+                  alt={item.food}
+                  className="w-full h-64 object-cover"
                 />
-              </div>
 
-              <div>
-                <label className="text-sm font-medium text-gray-700 block mb-2">
-                  Food Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter food item"
-                  className="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                />
-              </div>
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900">
+                        {item.food}
+                      </h3>
+                      <p className="text-gray-500">{item.restaurant}</p>
+                    </div>
 
-              <div>
-                <label className="text-sm font-medium text-gray-700 block mb-2">
-                  Food Description
-                </label>
-                <textarea
-                  rows="4"
-                  placeholder="Write a short description..."
-                  className="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                ></textarea>
-              </div>
+                    <div className="flex items-center gap-1 bg-yellow-100 px-3 py-2 rounded-2xl">
+                      <Star className="fill-yellow-500 text-yellow-500" size={18} />
+                      <span className="font-semibold">{item.rating}</span>
+                    </div>
+                  </div>
 
-              <div>
-                <label className="text-sm font-medium text-gray-700 block mb-2">
-                  Upload Food Photo
-                </label>
+                  <div className="mt-5">
+                    <p className="text-sm text-gray-600 mb-3">
+                      Rate this food:
+                    </p>
 
-                <div className="border-2 border-dashed border-orange-300 rounded-3xl p-10 text-center bg-orange-50 hover:bg-orange-100 transition-all cursor-pointer">
-                  <div className="text-5xl mb-3">⬆️</div>
-                  <p className="text-gray-700 font-medium">
-                    Drag & Drop or Click to Upload
-                  </p>
-                  <p className="text-sm text-gray-500 mt-1">
-                    PNG, JPG, JPEG supported
-                  </p>
+                    <div className="flex gap-2">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          className="bg-gray-100 hover:bg-yellow-100 p-3 rounded-2xl transition"
+                        >
+                          <Star size={20} />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <button className="w-full bg-black hover:bg-gray-800 text-white font-semibold py-3 rounded-2xl transition-all shadow-lg">
-                Save Food Details
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       </div>
